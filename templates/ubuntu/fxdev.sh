@@ -251,15 +251,16 @@ function install_gcloud() {
     log "Google CLI installed successfully"
 
     # Google Credentials Setup (If file exists)
-    if [ -f "$GOOGLE_CLOUD_CREDENTIALS" ]; then 
-        gcloud auth activate-service-account --key-file "$GOOGLE_CLOUD_CREDENTIALS" || { log "Failed to activate service account." }
-        gcloud config set project ""$GOOGLE_CLOUD_PROJECT || { log "Failed to set default project." }
+  if [ -f "$GOOGLE_CLOUD_CREDENTIALS" ]; then 
+    gcloud auth activate-service-account --key-file "$GOOGLE_CLOUD_CREDENTIALS" || { log "Failed to activate service account." }
+    gcloud config set project "$GOOGLE_CLOUD_PROJECT" || { log "Failed to set default project." }
 
-        log "Google Cloud credentials loaded and default project set."
-    fi
-  else
-    log "Skipping Google CLI installation."
-  fi
+    log "Google Cloud credentials loaded and default project set."
+  fi  # Close Google Credentials setup 
+fi  # Close the initial if [[ $confirm == [yY] ]] 
+else
+  log "Skipping Google CLI installation."
+fi
 }
 
 function install_starship() {
