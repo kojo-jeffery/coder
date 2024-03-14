@@ -12,6 +12,6 @@ RUN useradd --groups sudo --no-create-home --shell /bin/bash ${USER} \
 USER ${USER}
 WORKDIR /home/${USER}
 
-COPY setup_dev_env.sh /usr/local/bin/stddenv
-RUN chmod +x /usr/local/bin/stddenv
+COPY fxdev.sh /usr/local/bin/fxd
+RUN chmod +x /usr/local/bin/fxd
 
